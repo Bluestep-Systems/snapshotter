@@ -2,8 +2,8 @@
 
 ## Package
 ```bash
-helm package helm -d ../../../charts
-helm repo index ../../../charts
+helm package helm -d ../../charts
+helm repo index ../../charts
 ```
 ## Add to repository to local installation
 ```bash
