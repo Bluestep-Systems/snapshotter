@@ -1,0 +1,10 @@
+# https://codefresh.io/blog/not-ignore-dockerignore/
+
+.git
+
+*~
+**/*~
+
+helm/
+src/
+gradle/

@@ -1,0 +1,46 @@
+# See https://gitlab.com/tygrdev/k8s-snapshotter
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  labels:
+    {{- include "snapshotter.labels" . | nindent 4 }}
+  name: {{ include "snapshotter.fullname" . }}
+spec:
+  schedule: {{ .Values.schedule }}
+  concurrencyPolicy: {{ .Values.concurrencyPolicy }}
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          serviceAccount: {{ include "snapshotter.fullname" . }}
+          containers:
+          - name: {{ .Chart.Name }}
+            {{- with .Values.image }}
+            image: "{{ .repository }}:{{ .tag }}"
+            imagePullPolicy: {{ .pullPolicy }}
+           {{- end }}
+            env:
+            - name: VOLUME_SNAPSHOT_CLASS
+              value: {{ .Values.volumeSnapshotClass }}
+            - name: PVC_NAME
+              value: {{ .Values.pvcName }}
+            - name: FREQUENCY
+              value: {{ .Values.frequency }}
+            - name: RETAIN
+              value: "{{ .Values.retain }}"
+            - name: DATE_FORMAT
+              value: "{{ .Values.dateFormat }}"
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+          {{- toYaml . | nindent 8 }}
+          {{- end }}
+          restartPolicy: {{ .Values.restartPolicy }}
