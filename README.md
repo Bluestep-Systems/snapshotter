@@ -1,4 +1,4 @@
-# Bleustep snapshotter
+# Bluestep snapshotter
 
 ## Package
 ```bash
