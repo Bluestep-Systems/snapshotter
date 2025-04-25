@@ -15,7 +15,7 @@ retain: "30"
 dateFormat: '%Y%m%d-%H%M'
    
 image:
-  repository: ghcr.io/bluestep-systems/b6p-snapshotter
+  repository: ghcr.io/bluestep-systems/snapshotter
   tag: "3.17.0"
   pullPolicy: IfNotPresent
 
