@@ -1,13 +1,11 @@
 services:
-  b6p-snapshotter:
+  snapshotter:
     build: 
       context: .
       dockerfile: Dockerfile
       args:
         DTZAR_HELM_KUBECTL_VERSION: ${DTZAR_HELM_KUBECTL_VERSION}
       tags:
-      - b6p-snapshotter:latest
-      - b6p-snapshotter:${DTZAR_HELM_KUBECTL_VERSION}
-      - ghcr.io/bluestep-systems/b6p-snapshotter:latest
-      - ghcr.io/bluestep-systems/b6p-snapshotter:${DTZAR_HELM_KUBECTL_VERSION}
-    image: b6p-snapshotter
+      - ghcr.io/bluestep-systems/snapshotter:latest
+      - ghcr.io/bluestep-systems/snapshotter:${DTZAR_HELM_KUBECTL_VERSION}
+    image: ghcr.io/bluestep-systems/snapshotter
