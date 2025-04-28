@@ -6,6 +6,6 @@ services:
       args:
         DTZAR_HELM_KUBECTL_VERSION: ${DTZAR_HELM_KUBECTL_VERSION}
       tags:
-      - ghcr.io/bluestep-systems/snapshotter:latest
+      - ghcr.io/bluestep-systems/snapshotter
       - ghcr.io/bluestep-systems/snapshotter:${DTZAR_HELM_KUBECTL_VERSION}
     image: ghcr.io/bluestep-systems/snapshotter
